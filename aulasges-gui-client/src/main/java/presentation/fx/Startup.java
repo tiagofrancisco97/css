@@ -1,24 +1,23 @@
 package presentation.fx;
-/*
+
 import java.io.IOException;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-//import facade.handlers.ICustomerServiceRemote;
+import facade.handlers.IAulaServiceRemote;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import presentation.fx.inputcontroller.AtivarAulaController;
+import presentation.fx.model.AtivarAulaModel;
 
-import presentation.fx.inputcontroller.NewCustomerController;
-import presentation.fx.model.NewCustomerModel;*/
 
 
-/*
 public class Startup extends Application {
     
-	//private static ICustomerServiceRemote customerService;
+	private static IAulaServiceRemote aulaService;
 
 	@Override 
     public void start(Stage stage) throws IOException {
@@ -27,14 +26,14 @@ public class Startup extends Application {
 		// ResourceBundle i18nBundle = ResourceBundle.getBundle("i18n.Bundle", new Locale("en", "UK"));
         ResourceBundle i18nBundle = ResourceBundle.getBundle("i18n.Bundle", new Locale("pt", "PT"));
 		
-    	FXMLLoader createCustomerLoader = new FXMLLoader(getClass().getResource("/fxml/newCustomer.fxml"), i18nBundle);
-    	Parent root = createCustomerLoader.load();
-    	//NewCustomerController newCustomerController = createCustomerLoader.getController();    	
+    	FXMLLoader ativarAulaLoader = new FXMLLoader(getClass().getResource("/fxml/newCustomer.fxml"), i18nBundle);
+    	Parent root = ativarAulaLoader.load();
+    	AtivarAulaController ativarAulaController = ativarAulaLoader.getController();    	
     	
-    	/*NewCustomerModel newCustomerModel = new NewCustomerModel(customerService);
-    	newCustomerController.setModel(newCustomerModel);
-    	newCustomerController.setCustomerService(customerService);
-    	newCustomerController.setI18NBundle(i18nBundle);
+    	AtivarAulaModel ativarAulaModel = new AtivarAulaModel(aulaService);
+    	ativarAulaController.setModel(ativarAulaModel);
+    	ativarAulaController.setCustomerService(aulaService);
+    	ativarAulaController.setI18NBundle(i18nBundle);
     	
         Scene scene = new Scene(root, 450, 275);
        
@@ -43,9 +42,8 @@ public class Startup extends Application {
         stage.show();
     }
 	
-	public static void startGUI(/*ICustomerServiceRemote addCustomerHandler) {
-		//Startup.customerService = addCustomerHandler;
-        //launch();
+	public static void startGUI(IAulaServiceRemote aulaService) {
+		Startup.aulaService = aulaService;
+        launch();
 	}
 }
-*/
