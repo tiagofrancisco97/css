@@ -2,6 +2,8 @@ package client;
 
 import javax.ejb.EJB;
 
+import facade.handlers.IAulaServiceRemote;
+
 //import facade.handlers.ICustomerServiceRemote;
 
 /**
@@ -20,8 +22,8 @@ public class Main {
 	// PATH-TO-WILDFLY/bin/appclient.sh aulasges-ear/target/aulasges-ear-1.0.ear#aulasges-gui-client.jar
 	
 
-   /* @EJB
-    private static ICustomerServiceRemote addCustomerHandler;*/
+	@EJB
+    private static IAulaServiceRemote aulaHandler;
 
 	/**
 	 * An utility class should not have public constructors
@@ -36,7 +38,7 @@ public class Main {
      */
 
     public static void main(String[] args) {
-    	//presentation.fx.Startup.startGUI(addCustomerHandler);
+    	presentation.fx.Startup.startGUI(aulaHandler);
     }
 
 }
