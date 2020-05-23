@@ -1,0 +1,25 @@
+
+
+INSERT INTO Instalacao (ID, VERSION, NOME, TIPO, LOTACAOMAX) VALUES (1, 1,'Estudio 1', 'ESTUDIO', 20 )
+INSERT INTO Instalacao (ID, VERSION, NOME, TIPO, LOTACAOMAX) VALUES (2, 1,'Estudio 2', 'ESTUDIO', 15 )
+INSERT INTO Instalacao (ID, VERSION, NOME, TIPO, LOTACAOMAX) VALUES (3, 1,'Biclas', 'SALADEBICICLETAS', 10 )
+INSERT INTO Instalacao (ID, VERSION, NOME, TIPO, LOTACAOMAX) VALUES (4, 1,'Piscina 25', 'PISCINA', 20 )
+
+INSERT INTO Modalidade (ID, NOME, DURACAOMINIMA, CUSTOPORHORA) VALUES (1, 'Pilates', 50, 7 )
+INSERT INTO Modalidade (ID, NOME, DURACAOMINIMA, CUSTOPORHORA) VALUES (2, 'Step', 45, 10)
+INSERT INTO Modalidade (ID, NOME, DURACAOMINIMA, CUSTOPORHORA) VALUES (3, 'GAP', 50, 10)
+INSERT INTO Modalidade (ID, NOME, DURACAOMINIMA, CUSTOPORHORA) VALUES (4, 'Indoor Cycling', 55, 10)
+INSERT INTO Modalidade (ID, NOME, DURACAOMINIMA, CUSTOPORHORA) VALUES (5 ,'Hidroginastica', 45, 15)
+
+INSERT INTO Utente (NUMEROUTENTE, NOME, NIF) VALUES (1, 'Ulisses', 223842389)
+INSERT INTO Utente (NUMEROUTENTE, NOME, NIF) VALUES (2, 'David', 256039682)
+INSERT INTO Utente (NUMEROUTENTE, NOME, NIF) VALUES (3, 'Teresa', 256039682)
+INSERT INTO Utente (NUMEROUTENTE, NOME, NIF) VALUES (4, 'Querubim', 197672337)
+INSERT INTO Utente (NUMEROUTENTE, NOME, NIF) VALUES (5, 'Cicero', 221057552)
+
+INSERT INTO Instalacao_Modalidade (Instalacao_ID, modalidades_ID) VALUES (1, 1)
+INSERT INTO Instalacao_Modalidade (Instalacao_ID, modalidades_ID) VALUES (1, 2)
+INSERT INTO Instalacao_Modalidade (Instalacao_ID, modalidades_ID) VALUES (1, 3)
+INSERT INTO Instalacao_Modalidade (Instalacao_ID, modalidades_ID) VALUES (2, 1)
+INSERT INTO Instalacao_Modalidade (Instalacao_ID, modalidades_ID) VALUES (3, 4)
+INSERT INTO Instalacao_Modalidade (Instalacao_ID, modalidades_ID) VALUES (4, 5)
