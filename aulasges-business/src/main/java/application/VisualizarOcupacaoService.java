@@ -33,15 +33,14 @@ public class VisualizarOcupacaoService implements IVisualizarOcupacaoServiceRemo
 	 * @return lista de entradas com as aulas que decorrem na instala��o
 	 * @throws ApplicationException
 	 */
-	public List<facade.dto.Aula> visualizarOcupacao(String instalacao, String data) throws ApplicationException {
-		int dia = Integer.parseInt(data.split("/")[0]);
-		int mes = Integer.parseInt(data.split("/")[1]);
-		int ano = Integer.parseInt(data.split("/")[2]);
-		Calendar d= Calendar.getInstance();
-		d.set(Calendar.DAY_OF_MONTH, dia);
-		d.set(Calendar.MONTH, mes);
-		d.set(Calendar.YEAR, ano);
+	public List<facade.dto.Aula> visualizarOcupacao(String instalacao, Calendar data) throws ApplicationException {
+		
+		Calendar d= (Calendar) data.clone();
 		return this.viasualizarOcupacaoHandler.visualizarOcupacao(instalacao, d);
+	}
+	
+	public List<String> instalacoes() throws ApplicationException{
+		return this.viasualizarOcupacaoHandler.instalacoes();
 	}
 	
 }

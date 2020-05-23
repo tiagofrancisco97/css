@@ -71,5 +71,9 @@ public class VisualizarOcupacaoHandler {
 		return entradas;
 	}
 	
+	public List<String> instalacoes() throws ApplicationException{
+		return this.ci.getInstalacoes();
+	}
+	
 	
 }

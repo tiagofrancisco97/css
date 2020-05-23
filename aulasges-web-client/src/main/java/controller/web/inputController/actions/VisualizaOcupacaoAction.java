@@ -1,6 +1,10 @@
 package controller.web.inputController.actions;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -25,48 +29,56 @@ import presentation.web.model.VisualizaOcupacaoModel;
  */
 @Stateless
 public class VisualizaOcupacaoAction extends Action {
-	
+
 	@EJB private IVisualizarOcupacaoServiceRemote visualizarOcupacaoHandler;
-	
+
 	@Override
 	public void process(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 
 		VisualizaOcupacaoModel model = createHelper(request);
 		request.setAttribute("model", model);
-		
+		request.setAttribute("instalacoes", model.getInstalacoes());
+
 		if (validInput(model)) {
 			try {
-				List <Aula> aulas =visualizarOcupacaoHandler.visualizarOcupacao(model.getInstalacao(), model.getData());
-				//.addCustomer(intValue(model.getVATNumber()), 
-						//model.getDesignation(), intValue(model.getPhoneNumber()), intValue(model.getDiscountType()));
-				model.clearFields();
-				model.addMessage("Aulas a decorrer na instalação: "+model.getInstalacao());
-				
-				for (Aula aula : aulas) {
-					model.addMessage(aula.toString2());
-					model.addMessage("-------------------------------------------------------");
+				if(request.getParameter("data").contains("-")) {
+					Calendar d = Calendar.getInstance();
+					d.set(Calendar.DAY_OF_MONTH, Integer.parseInt(request.getParameter("data").split("-")[0]));
+					d.set(Calendar.MONTH, Integer.parseInt(request.getParameter("data").split("-")[1])-1);
+					d.set(Calendar.YEAR, Integer.parseInt(request.getParameter("data").split("-")[2]));
+					//model.setData(d);
+					List <Aula> aulas =visualizarOcupacaoHandler.visualizarOcupacao(model.getInstalacao(), d);
+					//.addCustomer(intValue(model.getVATNumber()), 
+					//model.getDesignation(), intValue(model.getPhoneNumber()), intValue(model.getDiscountType()));
+					model.clearFields();
+					model.addMessage("Aulas a decorrer na instalação: "+model.getInstalacao());
+
+					for (Aula aula : aulas) {
+						model.addMessage(aula.toString2());
+						model.addMessage("-------------------------------------------------------");
+					}
 				}
 			} 
-            catch (ApplicationException e) {
+			catch (ApplicationException e) {
 				model.addMessage("Error adding customer: " + e.getMessage());
 			}
 		} else {
 			model.addMessage("Erro nos dados introduzidos");
 		}
-		
+
 		request.getRequestDispatcher("/visualizaOcupacao/visualiza.jsp").forward(request, response);
 	}
 
-	
+
 	private boolean validInput(VisualizaOcupacaoModel model) {
-		
+
 		// check if designation is filled
 		boolean result = isFilled(model, model.getInstalacao(), "Deve colocar o nome da instalação");
-		
+
 		// check if VATNumber is filled and a valid number
 		result &= isFilled(model, model.getData(), "Deve colocar uma data");
-		
+
 		// check in case phoneNumber is filled if it contains a valid number
 		/*if (!model.getPhoneNumber().equals(""))
 			result &= isInt(model, model.getPhoneNumber(), "Phone number contains invalid characters");
@@ -74,7 +86,7 @@ public class VisualizaOcupacaoAction extends Action {
 		// check if discount type is filled and a valid number
 		result &= isFilled(model, model.getDiscountType(), "Discount type must be filled") 
 					&& isInt(model, model.getDiscountType(), "Discount type with invalid characters");
-		*/
+		 */
 		return result;
 	}
 
@@ -86,7 +98,14 @@ public class VisualizaOcupacaoAction extends Action {
 
 		// fill it with data from the request
 		model.setInstalacao(request.getParameter("instalacao"));
-		//model.setData(request.getParameter("data"));
+		/*if(request.getParameter("data").contains("/")) {
+			Calendar d = Calendar.getInstance();
+			d.set(Calendar.DAY_OF_MONTH, Integer.parseInt(request.getParameter("data").split("-")[0]));
+			d.set(Calendar.MONTH, Integer.parseInt(request.getParameter("data").split("-")[1]));
+			d.set(Calendar.YEAR, Integer.parseInt(request.getParameter("data").split("-")[2]));
+			model.setData(d);
+		}*/
+		model.setData(request.getParameter("data"));
 
 		return model;
 	}	

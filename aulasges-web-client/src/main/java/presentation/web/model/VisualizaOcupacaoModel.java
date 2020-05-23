@@ -1,6 +1,8 @@
 package presentation.web.model;
 
-
+import java.sql.Time;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.LinkedList;
 
 import facade.exceptions.ApplicationException;
@@ -51,12 +53,13 @@ public class VisualizaOcupacaoModel extends Model {
 	public void clearFields() {
 		
 	}
-	
-	public Iterable<facade.dto.Aula> getDiscounts () {
+		
+	public Iterable<String> getInstalacoes () {
 		try {
-			return this.visualizarOcupacaoHandler.visualizarOcupacao(instalacao, data);
+			return this.visualizarOcupacaoHandler.instalacoes();
 		} catch (ApplicationException e) {
-			return new LinkedList<facade.dto.Aula> ();		
+			e.printStackTrace();
+			return new LinkedList<String> ();		
 		}
 	}
 }

@@ -16,9 +16,13 @@
 <h2>Visualizar ocupação</h2>
 <form action="visualizaOcupacao" method="post">
     <div class="mandatory_field">
-    	<label for="instalacao">Instalação:</label> 
-    	<input type="text" name="instalacao" size="50" value="${model.instalacao}"/> 
-    </div>
+		<label for="instalacao">Intalações:</label>
+		<select name="instalacao">  
+			<c:forEach var="instalacao" items="${instalacoes}">
+				<option value="${instalacao}" ${model.instalacao == instalacao ? 'selected' : ''}>${instalacao}</option>
+			</c:forEach> 
+		</select>
+   </div>
     <div class="mandatory_field">
 		<label for="data">Data:</label> 
 		<input type="text" name="data" value="${model.data}"/> <br/>
