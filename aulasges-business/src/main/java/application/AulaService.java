@@ -9,12 +9,13 @@ import javax.ejb.Stateless;
 import business.Dia;
 import business.handlers.AulaHandler;
 import facade.exceptions.ApplicationException;
+import facade.handlers.IAulaServiceRemote;
 
 
 
 
 @Stateless
-public class AulaService {
+public class AulaService implements IAulaServiceRemote{
 	
 	@EJB
 	private AulaHandler aulaHandler;
