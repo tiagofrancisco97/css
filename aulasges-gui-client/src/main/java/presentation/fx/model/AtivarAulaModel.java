@@ -3,7 +3,6 @@ package presentation.fx.model;
 
 import java.util.Calendar;
 
-import business.Instalacao;
 import facade.exceptions.ApplicationException;
 import facade.handlers.IAulaServiceRemote;
 

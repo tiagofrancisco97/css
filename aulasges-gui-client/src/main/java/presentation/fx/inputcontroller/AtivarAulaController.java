@@ -71,7 +71,7 @@ public class AtivarAulaController extends BaseController {
 	}
 
 	@FXML
-	void createCustomerAction(ActionEvent event) {
+	void ativarAulaAction(ActionEvent event) {
 		String errorMessages = validateInput();
 
 		if (errorMessages.length() == 0) {

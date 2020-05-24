@@ -26,7 +26,7 @@ public class Startup extends Application {
 		// ResourceBundle i18nBundle = ResourceBundle.getBundle("i18n.Bundle", new Locale("en", "UK"));
         ResourceBundle i18nBundle = ResourceBundle.getBundle("i18n.Bundle", new Locale("pt", "PT"));
 		
-    	FXMLLoader ativarAulaLoader = new FXMLLoader(getClass().getResource("/fxml/newCustomer.fxml"), i18nBundle);
+    	FXMLLoader ativarAulaLoader = new FXMLLoader(getClass().getResource("/fxml/ativarAula.fxml"), i18nBundle);
     	Parent root = ativarAulaLoader.load();
     	AtivarAulaController ativarAulaController = ativarAulaLoader.getController();    	
     	
